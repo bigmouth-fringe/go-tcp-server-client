@@ -21,9 +21,9 @@ func (p Protector) GenerateNextSessionKey(sessionKey string) string {
 		panic("Hash is empty")
 	}
 
-	for i := 0; i < len(p.Hash); i++ {
-		var digit = rune(p.Hash[i])
-		if !unicode.IsDigit(digit) {
+	for i := 0; i < len(p.Hash) - 1; i++ {
+		var digit = p.Hash[i] - 48
+		if digit < 0 || digit > 9 {
 			panic("Hash code contains non-digital letter")
 		}
 	}
